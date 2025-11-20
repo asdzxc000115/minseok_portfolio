@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minseok Choi - Portfolio</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* 기본 폰트 및 색상 설정 (Slate 테마) */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Slate-50 */
+            color: #334155; /* Slate-700 */
+        }
+
+        /* ========== 왼쪽 네비게이션 스타일 ========== */
+        .nav-link {
+            position: relative;
+            display: inline-block;
+            font-size: 1rem; /* [수정] 폰트 사이즈 조정 */
+            font-weight: 500;
+            color: #94a3b8; /* Slate-400 */
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #475569; /* Slate-600 */
+            transform: translateX(4px);
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 0;
+            height: 2px;
+            background-color: #475569;
+            transition: width 0.3s ease;
+        }
+        .nav-link.active {
+            color: #0f172a; /* Slate-900 */
+            font-weight: 700;
+        }
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* ========== 로딩 화면 (터미널) 스타일 ========== */
+        .preloader-hidden {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.8s ease-out;
+        }
+        #terminal-window {
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            transform: translateY(0);
+            transition: transform 0.8s ease-out;
+        }
+        .preloader-hidden #terminal-window {
+            transform: translateY(-20px);
+        }
+        #terminal-output {
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 16px;
+            background-color: #4ade80;
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* ========== 유틸리티 ========== */
+        .section-title::before {
+            content: ""; display: block; width: 40px; height: 3px;
+            background-color: #475569;
+            margin-bottom: 12px;
+        }
+
+        /* 스크롤바 디자인 */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* 툴팁 */
+        .tooltip-container { position: relative; display: inline-block; }
+        .tooltip-text {
+            visibility: hidden; width: max-content; background-color: #334155; color: #fff;
+            text-align: center; border-radius: 4px; padding: 4px 8px;
+            position: absolute; bottom: 140%; left: 50%; transform: translateX(-50%);
+            opacity: 0; transition: opacity 0.2s; font-size: 0.75rem; pointer-events: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 50;
+        }
+        .tooltip-text::after {
+            content: ""; position: absolute; top: 100%; left: 50%; margin-left: -5px;
+            border-width: 5px; border-style: solid; border-color: #334155 transparent transparent transparent;
+        }
+        .tooltip-container:hover .tooltip-text { visibility: visible; opacity: 1; }
+
+        /* 스킬바 애니메이션 */
+        .skill-bar-fill { width: 0%; transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1); }
+
+        /* 로고 회전 애니메이션 */
+        .site-logo {
+            transition: transform 0.1s linear;
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+
+<!-- ========== PRELOADER (로딩 화면) ========== -->
+<div id="preloader" class="fixed inset-0 bg-slate-50 z-[9999] flex items-center justify-center p-4">
+    <div id="terminal-window" class="w-full max-w-lg bg-[#1e1e1e] rounded-lg overflow-hidden border border-gray-700">
+        <div class="bg-[#2d2d2d] px-4 py-2 flex items-center gap-2 border-b border-gray-700">
+            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+            <div class="ml-auto text-xs text-gray-400">bash — 80x24</div>
+        </div>
+        <div class="p-4 h-64 overflow-y-auto font-mono text-sm text-gray-300" id="terminal-content"></div>
+    </div>
+</div>
+
+<!-- 로고 위치: 화면 맨 오른쪽 아래 고정 -->
+<div id="site-logo-container" class="fixed bottom-8 right-8 z-[100]">
+    <a href="#home" title="맨 위로">
+        <svg id="site-logo" class="site-logo w-12 h-12 text-slate-400 hover:text-slate-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+        </svg>
+    </a>
+</div>
+
+
+<!-- ========== 전체 레이아웃 (2단) ========== -->
+<div class="container mx-auto px-6 max-w-7xl min-h-screen md:flex">
+
+    <!-- [왼쪽 컬럼] 고정 (Sidebar) -->
+    <header class="md:w-1/3 md:sticky md:top-0 md:h-screen flex flex-col border-r border-slate-200 bg-slate-50/50 backdrop-blur-sm z-10">
+
+        <!-- 1. 상단 콘텐츠 (프로필 ~ 네비게이션) -->
+        <!-- [★수정] 중앙 정렬 및 컴팩트한 배치 -->
+        <div class="flex-1 flex flex-col justify-center px-0 md:pr-12 py-8 overflow-y-auto scrollbar-hide">
+
+            <!-- 프로필 사진 -->
+            <!-- [★수정] 크기 축소 w-36 h-36 -->
+            <div class="mb-6 animate-fade-in-up" style="animation-delay: 0s;">
+                <div class="w-36 h-36 rounded-full overflow-hidden shadow-lg border-4 border-white mx-auto md:mx-0">
+                    <img src="https://placehold.co/200x200/cbd5e1/475569?text=Photo" alt="Profile Photo" class="w-full h-full object-cover">
+                </div>
+            </div>
+
+            <!-- 이름 & 직무 -->
+            <!-- [★수정] 폰트 사이즈 축소 -->
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mb-2 tracking-tight animate-fade-in-up" style="animation-delay: 0.2s;">
+                Minseok Choi
+            </h1>
+            <h2 class="text-lg text-slate-600 font-medium mb-5 animate-fade-in-up" style="animation-delay: 0.4s;">
+                Junior Backend Developer
+            </h2>
+
+            <!-- 간단 소개 -->
+            <!-- [★수정] 폰트 사이즈 text-sm 으로 축소 -->
+            <p class="text-slate-500 text-sm leading-relaxed mb-8 max-w-xs animate-fade-in-up" style="animation-delay: 0.6s;">
+                성실함과 책임감을 바탕으로 안정적인 서비스를 만드는 개발자 최민석입니다.<br>
+                비효율을 개선하고 새로운 기술을 습득하는 과정을 즐깁니다.
+            </p>
+
+            <!-- 네비게이션 -->
+            <nav class="hidden md:block animate-fade-in-up" style="animation-delay: 0.8s;">
+                <ul class="space-y-3"> <!-- [수정] 간격 조금 줄임 -->
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#experience" class="nav-link">Experience</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#education" class="nav-link">Education</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- 2. 하단 링크 그룹 : 바닥 고정 -->
+        <!-- [★수정] 네비게이션과 간격 확보를 위해 mt-auto, pb-12 -->
+        <div class="mt-auto pb-12 flex items-center gap-6 animate-fade-in-up" style="animation-delay: 1.0s;">
+            <!-- GitHub -->
+            <div class="tooltip-container">
+                <a href="https://github.com/asdzxc000115" target="_blank" class="text-slate-400 hover:text-slate-900 transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                </a>
+                <span class="tooltip-text">GitHub</span>
+            </div>
+
+            <!-- Resume -->
+            <div class="tooltip-container">
+                <a href="#" target="_blank" class="text-slate-400 hover:text-slate-900 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                </a>
+                <span class="tooltip-text">Resume</span>
+            </div>
+
+            <!-- PDF Download -->
+            <div class="tooltip-container">
+                <a href="portfolio.pdf" download class="text-slate-400 hover:text-slate-900 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                </a>
+                <span class="tooltip-text">PDF</span>
+            </div>
+
+            <!-- Email Copy [★수정] 원래 아이콘(편지 봉투)으로 변경 -->
+            <div class="tooltip-container">
+                <button id="btn-copy-email" class="text-slate-400 hover:text-slate-900 transition-colors focus:outline-none flex items-center">
+                    <!-- Envelope Icon -->
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                </button>
+                <span id="tooltip-email" class="tooltip-text">Copy Email</span>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- [오른쪽 컬럼] 스크롤 콘텐츠 (Main) -->
+    <main class="md:w-2/3 md:ml-auto md:pl-12" id="home">
+
+        <!-- 모바일 메뉴 버튼 -->
+        <div class="md:hidden flex justify-end py-6 px-6 sticky top-0 bg-slate-50/90 backdrop-blur z-40 border-b border-slate-200">
+            <button id="mobile-menu-btn" class="text-slate-700 p-2 border rounded">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+        <!-- 모바일 메뉴 -->
+        <div id="mobile-menu" class="hidden md:hidden mb-12 bg-white rounded shadow p-4 space-y-2 mx-6">
+            <a href="#about" class="block text-slate-600 py-2">About</a>
+            <a href="#experience" class="block text-slate-600 py-2">Experience</a>
+            <a href="#projects" class="block text-slate-600 py-2">Projects</a>
+            <a href="#skills" class="block text-slate-600 py-2">Skills</a>
+            <a href="#education" class="block text-slate-600 py-2">Education</a>
+            <a href="#contact" class="block text-slate-600 py-2">Contact</a>
+        </div>
+
+        <!-- 1. About Me -->
+        <!-- [★수정] min-h-screen으로 왼쪽 콘텐츠와 중앙 높이 균형 맞춤 -->
+        <section id="about" class="min-h-screen flex flex-col justify-center px-6 md:px-0 border-b border-slate-100">
+            <div>
+                <h2 class="text-2xl font-bold text-slate-900 section-title">About Me</h2>
+                <div class="text-lg text-slate-600 leading-relaxed space-y-4">
+                    <p>
+                        안녕하세요! <strong>끊임없이 배우고 성장하는 주니어 백엔드 개발자 최민석</strong>입니다.
+                    </p>
+                    <p>
+                        저는 복잡한 문제를 해결하고 효율적인 코드를 작성하는 과정에서 큰 즐거움을 느낍니다.
+                        특히 <strong>Spring Boot</strong>와 <strong>Java</strong>를 활용하여 안정적이고 확장 가능한 서버 애플리케이션을 구축하는 데 관심이 많습니다.
+                        팀원들과의 원활한 소통과 협업을 중요하게 생각하며, 코드 리뷰와 페어 프로그래밍을 통해 함께 성장하는 것을 지향합니다.
+                    </p>
+                    <p>
+                        아직은 부족한 점이 많지만, 새로운 기술을 익히는 데 두려움이 없으며 맡은 바에 대한 강한 책임감을 가지고 있습니다.
+                        저의 성장 가능성을 믿고 함께할 기회를 기다립니다.
+                    </p>
+                </div>
+                <div class="mt-12 animate-bounce text-slate-400">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 2. Experience -->
+        <section id="experience" class="py-20 md:py-32 px-6 md:px-0 scroll-mt-24">
+            <h2 class="text-2xl font-bold text-slate-900 section-title">Major Project Experience</h2>
+            <div class="space-y-10">
+                <!-- 경험 1 [★수정] 그림자/Ring 효과 강화 -->
+                <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm hover:shadow-xl hover:ring-1 hover:ring-slate-300 transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                        <h3 class="text-xl font-bold text-slate-800">[개인] 업무 효율 83% 개선 — '원터치 발주 시스템' 개발</h3>
+                        <span class="text-sm text-slate-500 font-medium mt-1 md:mt-0">2024.10 ~ 2025.10</span>
+                    </div>
+                    <div class="text-slate-600 mb-4">
+                        <span class="block mb-1"><strong>소속:</strong> 어사출또 횟집 (아르바이트)</span>
+                        <span class="block mb-1"><strong>역할:</strong> 시스템 기획, 개발 및 도입 총괄</span>
+                        <span class="block"><strong>개요:</strong> 비효율적인 수기 발주 시스템의 누락/시간 소요 문제 해결</span>
+                    </div>
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-slate-700 mb-2">주요 수행 내용:</h4>
+                        <ul class="list-disc list-inside text-slate-600 space-y-1 pl-2">
+                            <li>기존 문제점 분석 및 관리자/동료 요구사항 파악</li>
+                            <li>Google Forms/Spreadsheet 연동 자동 집계 시스템 개발</li>
+                            <li>관리자 설득 및 동료 교육을 통한 시스템 정착</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded text-slate-800 text-sm border-l-4 border-slate-400">
+                        <strong>성과:</strong> 관리자 마감 업무 시간 1시간 → 10분으로 <strong>83% 단축</strong>
+                    </div>
+                </div>
+
+                <!-- 경험 2 -->
+                <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm hover:shadow-xl hover:ring-1 hover:ring-slate-300 transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                        <h3 class="text-xl font-bold text-slate-800">[StartUp] AI 기반 '교내 식당 혼잡도 개선 앱' 개발</h3>
+                        <span class="text-sm text-slate-500 font-medium mt-1 md:mt-0">2025.03 ~ 2025.06</span>
+                    </div>
+                    <div class="text-slate-600 mb-4">
+                        <span class="block mb-1"><strong>역할:</strong> 시스템 설계, AI 분석, 앱 개발 총괄</span>
+                        <span class="block"><strong>개요:</strong> 식당 혼잡 문제 해결 및 대기 시간 단축</span>
+                    </div>
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-slate-700 mb-2">주요 수행 내용:</h4>
+                        <ul class="list-disc list-inside text-slate-600 space-y-1 pl-2">
+                            <li>(분석) 30명 대상 설문조사 및 요구사항 정의</li>
+                            <li>(AI) Python YOLOv8 모델 활용 인원수 측정 시스템 구축</li>
+                            <li>(최적화) 카메라 각도 테스트로 객체 중첩 정확도 문제 해결</li>
+                            <li>(개발) Flutter 활용 데이터 기반 직관적 UI 앱 구현</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded text-slate-800 text-sm border-l-4 border-slate-400">
+                        <strong>성과:</strong> 식당 평균 대기 시간 <strong>27% 단축</strong> 및 교내 논문 제출
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Projects -->
+        <section id="projects" class="py-20 md:py-32 px-6 md:px-0 scroll-mt-24">
+            <h2 class="text-2xl font-bold text-slate-900 section-title">Projects</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- 프로젝트 1 -->
+                <a href="https://github.com/asdzxc000115" target="_blank" class="group block bg-white border border-slate-200 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <div class="h-48 overflow-hidden bg-slate-100">
+                        <img src="https://via.placeholder.com/600x400/cbd5e1/64748b?text=Congestion+App" alt="Project 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors">교내 혼잡도 개선 앱</h3>
+                            <svg class="w-5 h-5 text-slate-400 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        </div>
+                        <p class="text-slate-600 text-sm mb-4 line-clamp-2">YOLOv7과 Flutter를 활용하여 실시간 식당 혼잡도를 분석하고 제공하는 모바일 애플리케이션입니다.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium">Dart</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium">Python</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium">YOLOv7</span>
+                        </div>
+                    </div>
+                </a>
+                <!-- 프로젝트 2 -->
+                <a href="https://github.com/asdzxc000115" target="_blank" class="group block bg-white border border-slate-200 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <div class="h-48 overflow-hidden bg-slate-100">
+                        <img src="https://via.placeholder.com/600x400/cbd5e1/64748b?text=Blog+Platform" alt="Project 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors">개인 블로그 플랫폼</h3>
+                            <svg class="w-5 h-5 text-slate-400 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        </div>
+                        <p class="text-slate-600 text-sm mb-4 line-clamp-2">Django 프레임워크로 구축한 마크다운 지원 기술 블로그입니다. 검색 및 태그 기능을 지원합니다.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium">Python</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium">Django</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium">JS</span>
+                        </div>
+                    </div>
+                </a>
+                <!-- 프로젝트 3 -->
+                <a href="https://github.com/asdzxc000115" target="_blank" class="group block bg-white border border-slate-200 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <div class="h-48 overflow-hidden bg-slate-100">
+                        <img src="https://via.placeholder.com/600x400/cbd5e1/64748b?text=Chat+App" alt="Project 3" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors">실시간 채팅 앱</h3>
+                            <svg class="w-5 h-5 text-slate-400 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        </div>
+                        <p class="text-slate-600 text-sm mb-4 line-clamp-2">Node.js와 Socket.IO를 이용한 실시간 웹 채팅 애플리케이션입니다.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium">Node.js</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium">Socket.IO</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium">React</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+
+        <!-- 4. Skills & Tools [★수정] 색상 다양화 -->
+        <section id="skills" class="py-20 md:py-32 px-6 md:px-0 scroll-mt-24">
+            <h2 class="text-2xl font-bold text-slate-900 section-title">Skills & Tools</h2>
+            <div class="space-y-12">
+                <!-- Skills -->
+                <div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-6 uppercase tracking-wide border-b pb-2 border-slate-200">Languages & Frameworks</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6">
+                        <div>
+                            <div class="flex justify-between mb-1"><span class="text-base font-medium text-slate-700">Java</span><span class="text-sm text-slate-500">80%</span></div>
+                            <!-- [★수정] 각 기술별 고유 색상 적용 -->
+                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="skill-bar-fill bg-red-500 h-2.5 rounded-full" style="width: 80%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1"><span class="text-base font-medium text-slate-700">Python</span><span class="text-sm text-slate-500">75%</span></div>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="skill-bar-fill bg-blue-500 h-2.5 rounded-full" style="width: 75%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1"><span class="text-base font-medium text-slate-700">HTML/CSS</span><span class="text-sm text-slate-500">90%</span></div>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="skill-bar-fill bg-orange-500 h-2.5 rounded-full" style="width: 90%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1"><span class="text-base font-medium text-slate-700">Spring Boot</span><span class="text-sm text-slate-500">60%</span></div>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="skill-bar-fill bg-green-600 h-2.5 rounded-full" style="width: 60%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1"><span class="text-base font-medium text-slate-700">JavaScript</span><span class="text-sm text-slate-500">70%</span></div>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="skill-bar-fill bg-yellow-400 h-2.5 rounded-full" style="width: 70%"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tools -->
+                <div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-6 uppercase tracking-wide border-b pb-2 border-slate-200">Tools & Infrastructure</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6">
+                        <div>
+                            <div class="flex justify-between mb-1"><span class="text-base font-medium text-slate-700">Git & GitHub</span><span class="text-sm text-slate-500">80%</span></div>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="skill-bar-fill bg-orange-600 h-2.5 rounded-full" style="width: 80%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1"><span class="text-base font-medium text-slate-700">MySQL</span><span class="text-sm text-slate-500">70%</span></div>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="skill-bar-fill bg-blue-600 h-2.5 rounded-full" style="width: 70%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1"><span class="text-base font-medium text-slate-700">IntelliJ IDEA</span><span class="text-sm text-slate-500">85%</span></div>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="skill-bar-fill bg-purple-600 h-2.5 rounded-full" style="width: 85%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1"><span class="text-base font-medium text-slate-700">Figma</span><span class="text-sm text-slate-500">75%</span></div>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="skill-bar-fill bg-pink-500 h-2.5 rounded-full" style="width: 75%"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 5. Education -->
+        <section id="education" class="py-20 md:py-32 px-6 md:px-0 scroll-mt-24">
+            <h2 class="text-2xl font-bold text-slate-900 section-title">Education</h2>
+            <div class="space-y-8 border-l-2 border-slate-200 ml-3 pl-8 relative">
+                <div class="relative">
+                    <span class="absolute -left-[39px] top-1.5 w-5 h-5 rounded-full border-4 border-white bg-slate-400"></span>
+                    <span class="text-sm text-slate-400 font-mono mb-1 block">2021.03 - 2026.02 (졸업예정)</span>
+                    <h3 class="text-lg font-bold text-slate-800">인하공업전문대학</h3>
+                    <p class="text-slate-600">컴퓨터정보공학과</p>
+                </div>
+                <div class="relative">
+                    <span class="absolute -left-[39px] top-1.5 w-5 h-5 rounded-full border-4 border-white bg-slate-400"></span>
+                    <span class="text-sm text-slate-400 font-mono mb-1 block">2025.07 - 2025.09</span>
+                    <h3 class="text-lg font-bold text-slate-800">교내 해커톤</h3>
+                    <p class="text-slate-600">Project Leader 참가 및 수상</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 6. Contact Me -->
+        <section id="contact" class="pt-20 md:pt-32 pb-32 md:pb-48 text-center px-6 md:px-0 scroll-mt-24">
+            <div class="bg-slate-800 rounded-2xl p-10 text-center shadow-xl">
+                <h2 class="text-2xl font-bold text-white mb-4">Contact Me</h2>
+                <p class="text-slate-300 mb-8 max-w-lg mx-auto">
+                    저의 포트폴리오를 끝까지 봐주셔서 감사합니다.<br>
+                    함께 성장하고 싶은 열정적인 제안을 언제나 기다립니다.
+                </p>
+                <a href="mailto:minseok.c02@gmail.com" class="inline-block bg-white text-slate-900 font-bold py-3 px-8 rounded-full hover:bg-slate-100 hover:scale-105 transition-all duration-300">
+                    Send Email
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center text-slate-400 text-sm pb-12">
+            <p>&copy; 2025 Minseok Choi. All rights reserved.</p>
+        </footer>
+
+    </main>
+</div>
+
+
+<!-- JavaScript -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // 1. 로딩 화면 로직 (터미널 타이핑 효과)
+        const terminalContent = document.getElementById('terminal-content');
+        const preloader = document.getElementById('preloader');
+
+        const logs = [
+            { text: "Connecting to server...", delay: 200 },
+            { text: "Loading assets...", delay: 400 },
+            { text: "Initializing modules...", delay: 800 },
+            { text: "Compiling portfolio data...", delay: 1200 },
+            { text: "Done.", delay: 1800 },
+            { text: "> SUCCESS! Welcome to Minseok's Portfolio.", delay: 2000, class: "text-green-400 font-bold" }
+        ];
+
+        logs.forEach(log => {
+            setTimeout(() => {
+                const p = document.createElement('div');
+                p.className = log.class || "mb-1";
+                p.innerHTML = `<span class="text-green-500 mr-2">➜</span>${log.text}`;
+                terminalContent.appendChild(p);
+                terminalContent.scrollTop = terminalContent.scrollHeight;
+
+                if (log === logs[logs.length - 1]) {
+                    setTimeout(() => {
+                        preloader.classList.add('preloader-hidden');
+                    }, 800);
+                }
+            }, log.delay);
+        });
+
+
+        // 2. 부드러운 스크롤 (자연스러운 속도 조절)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+
+                if (targetId === '#home') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    return;
+                }
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // 모바일 메뉴 닫기
+                    document.getElementById('mobile-menu').classList.add('hidden');
+
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const startPosition = window.pageYOffset;
+                    let offset = 0;
+
+                    const distance = targetPosition - offset - startPosition;
+                    const duration = 800;
+                    let start = null;
+
+                    function animation(currentTime) {
+                        if (start === null) start = currentTime;
+                        const timeElapsed = currentTime - start;
+                        const ease = (t, b, c, d) => {
+                            t /= d / 2;
+                            if (t < 1) return c / 2 * t * t + b;
+                            t--;
+                            return -c / 2 * (t * (t - 2) - 1) + b;
+                        };
+                        window.scrollTo(0, ease(timeElapsed, startPosition, distance, duration));
+                        if (timeElapsed < duration) requestAnimationFrame(animation);
+                    }
+                    requestAnimationFrame(animation);
+                }
+            });
+        });
+
+
+        // 3. 스크롤 스파이
+        const sections = document.querySelectorAll('main section');
+        const navLinks = document.querySelectorAll('header nav a');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.3
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+
+        // 4. 모바일 메뉴 토글
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+
+        // 5. 이메일 복사
+        const copyBtn = document.getElementById('btn-copy-email');
+        const tooltip = document.getElementById('tooltip-email');
+
+        copyBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText('minseok.c02@gmail.com').then(() => {
+                const originalText = tooltip.innerText;
+                tooltip.innerText = "Copied!";
+                tooltip.style.visibility = "visible";
+                tooltip.style.opacity = "1";
+                setTimeout(() => {
+                    tooltip.innerText = originalText;
+                    tooltip.style.visibility = "";
+                    tooltip.style.opacity = "";
+                }, 2000);
+            });
+        });
+
+        // 6. 스킬 바 채우기 애니메이션
+        const skillBars = document.querySelectorAll('.skill-bar-fill');
+        const skillObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bar = entry.target;
+                    bar.style.width = bar.dataset.percent;
+                    skillObserver.unobserve(bar);
+                }
+            });
+        }, { threshold: 0.5 });
+        skillBars.forEach(bar => skillObserver.observe(bar));
+
+        // 7. 로고 회전
+        const logo = document.getElementById('site-logo');
+        let lastScrollY = window.scrollY;
+        let currentRotation = 0;
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const scrollDelta = scrollY - lastScrollY;
+            currentRotation += scrollDelta * 0.2; // 속도 조절
+            logo.style.transform = `rotate(${currentRotation}deg)`;
+            lastScrollY = scrollY;
+        });
+
+    });
+</script>
+</body>
+</html>
