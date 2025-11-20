@@ -161,10 +161,9 @@
         <div class="flex-1 flex flex-col justify-center px-0 md:pr-12 py-8 overflow-y-auto scrollbar-hide">
 
             <!-- 프로필 사진 -->
-            <!-- [★수정] 크기 축소 w-36 h-36 -->
             <div class="mb-6 animate-fade-in-up" style="animation-delay: 0s;">
-                <div class="w-36 h-36 rounded-full overflow-hidden shadow-lg border-4 border-white mx-auto md:mx-0">
-                    <img src="https://placehold.co/200x200/cbd5e1/475569?text=Photo" alt="Profile Photo" class="w-full h-full object-cover">
+                <div class="w-40 h-45 rounded-full overflow-hidden shadow-lg border-4 border-white mx-auto md:mx-0">
+                    <img src="images/me.JPG" alt="Minseok Choi" class="w-40 h-25 object-cover">
                 </div>
             </div>
 
@@ -174,14 +173,14 @@
                 Minseok Choi
             </h1>
             <h2 class="text-lg text-slate-600 font-medium mb-5 animate-fade-in-up" style="animation-delay: 0.4s;">
-                Junior Backend Developer
+                Junior Frontend Developer
             </h2>
 
             <!-- 간단 소개 -->
             <!-- [★수정] 폰트 사이즈 text-sm 으로 축소 -->
             <p class="text-slate-500 text-sm leading-relaxed mb-8 max-w-xs animate-fade-in-up" style="animation-delay: 0.6s;">
-                성실함과 책임감을 바탕으로 안정적인 서비스를 만드는 개발자 최민석입니다.<br>
-                비효율을 개선하고 새로운 기술을 습득하는 과정을 즐깁니다.
+                사용자의 경험을 최우선으로 생각하며,<br>
+                매일 꾸준히 성장하는 성실한 개발자 최민석입니다.
             </p>
 
             <!-- 네비게이션 -->
@@ -210,7 +209,7 @@
 
             <!-- Resume -->
             <div class="tooltip-container">
-                <a href="#" target="_blank" class="text-slate-400 hover:text-slate-900 transition-colors">
+                <a href="minseok_resume.pdf" target="_blank" class="text-slate-400 hover:text-slate-900 transition-colors">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                 </a>
                 <span class="tooltip-text">Resume</span>
@@ -262,16 +261,15 @@
                 <h2 class="text-2xl font-bold text-slate-900 section-title">About Me</h2>
                 <div class="text-lg text-slate-600 leading-relaxed space-y-4">
                     <p>
-                        안녕하세요! <strong>끊임없이 배우고 성장하는 주니어 백엔드 개발자 최민석</strong>입니다.
+                        안녕하세요! <strong>매일 꾸준히 성장하는 주니어 프론트엔드 개발자 최민석</strong>입니다.
                     </p>
                     <p>
-                        저는 복잡한 문제를 해결하고 효율적인 코드를 작성하는 과정에서 큰 즐거움을 느낍니다.
-                        특히 <strong>Spring Boot</strong>와 <strong>Java</strong>를 활용하여 안정적이고 확장 가능한 서버 애플리케이션을 구축하는 데 관심이 많습니다.
-                        팀원들과의 원활한 소통과 협업을 중요하게 생각하며, 코드 리뷰와 페어 프로그래밍을 통해 함께 성장하는 것을 지향합니다.
+                        저는 사용자가 마주하는 화면 너머의 경험을 고민하고 개선하는 과정에서 큰 보람을 느낍니다.
+                        주어진 문제를 끝까지 파고들어 해결하는 <strong>집요함</strong>과, 맡은 일은 반드시 책임지는 <strong>성실함</strong>이 저의 가장 큰 무기입니다.
                     </p>
                     <p>
-                        아직은 부족한 점이 많지만, 새로운 기술을 익히는 데 두려움이 없으며 맡은 바에 대한 강한 책임감을 가지고 있습니다.
-                        저의 성장 가능성을 믿고 함께할 기회를 기다립니다.
+                        새로운 기술을 배우는 것을 두려워하지 않으며, 팀원들과의 원활한 소통을 통해 더 나은 서비스를 만들어가고 싶습니다.
+                        함께 성장할 수 있는 기회를 기다립니다.
                     </p>
                 </div>
                 <div class="mt-12 animate-bounce text-slate-400">
@@ -285,31 +283,8 @@
         <section id="experience" class="py-20 md:py-32 px-6 md:px-0 scroll-mt-24">
             <h2 class="text-2xl font-bold text-slate-900 section-title">Major Project Experience</h2>
             <div class="space-y-10">
-                <!-- 경험 1 [★수정] 그림자/Ring 효과 강화 -->
-                <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm hover:shadow-xl hover:ring-1 hover:ring-slate-300 transition-all duration-300 transform hover:-translate-y-1">
-                    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                        <h3 class="text-xl font-bold text-slate-800">[개인] 업무 효율 83% 개선 — '원터치 발주 시스템' 개발</h3>
-                        <span class="text-sm text-slate-500 font-medium mt-1 md:mt-0">2024.10 ~ 2025.10</span>
-                    </div>
-                    <div class="text-slate-600 mb-4">
-                        <span class="block mb-1"><strong>소속:</strong> 어사출또 횟집 (아르바이트)</span>
-                        <span class="block mb-1"><strong>역할:</strong> 시스템 기획, 개발 및 도입 총괄</span>
-                        <span class="block"><strong>개요:</strong> 비효율적인 수기 발주 시스템의 누락/시간 소요 문제 해결</span>
-                    </div>
-                    <div class="mb-4">
-                        <h4 class="font-semibold text-slate-700 mb-2">주요 수행 내용:</h4>
-                        <ul class="list-disc list-inside text-slate-600 space-y-1 pl-2">
-                            <li>기존 문제점 분석 및 관리자/동료 요구사항 파악</li>
-                            <li>Google Forms/Spreadsheet 연동 자동 집계 시스템 개발</li>
-                            <li>관리자 설득 및 동료 교육을 통한 시스템 정착</li>
-                        </ul>
-                    </div>
-                    <div class="bg-slate-50 p-3 rounded text-slate-800 text-sm border-l-4 border-slate-400">
-                        <strong>성과:</strong> 관리자 마감 업무 시간 1시간 → 10분으로 <strong>83% 단축</strong>
-                    </div>
-                </div>
 
-                <!-- 경험 2 -->
+                <!-- 경험 1: 교내 식당 혼잡도 개선 앱 (순서 변경됨) -->
                 <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm hover:shadow-xl hover:ring-1 hover:ring-slate-300 transition-all duration-300 transform hover:-translate-y-1">
                     <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                         <h3 class="text-xl font-bold text-slate-800">[StartUp] AI 기반 '교내 식당 혼잡도 개선 앱' 개발</h3>
@@ -322,16 +297,41 @@
                     <div class="mb-4">
                         <h4 class="font-semibold text-slate-700 mb-2">주요 수행 내용:</h4>
                         <ul class="list-disc list-inside text-slate-600 space-y-1 pl-2">
-                            <li>(분석) 30명 대상 설문조사 및 요구사항 정의</li>
-                            <li>(AI) Python YOLOv8 모델 활용 인원수 측정 시스템 구축</li>
-                            <li>(최적화) 카메라 각도 테스트로 객체 중첩 정확도 문제 해결</li>
-                            <li>(개발) Flutter 활용 데이터 기반 직관적 UI 앱 구현</li>
+                            <li>(분석/설계) 30명 대상 설문조사를 통해 사용자 요구사항 정의 및 시스템 구조 설계</li>
+                            <li>(AI 분석) Python YOLOv7 모델로 식당 내 인원수를 실시간으로 측정하는 데이터 수집 시스템 구축</li>
+                            <li>(문제 해결) 객체 중첩으로 인한 정확도 저하 문제를 해결하기 위해 카메라 위치와 각도를 직접 테스트하며 최적화</li>
+                            <li>(개발) Flutter를 활용하여 혼잡도 데이터를 직관적으로 보여주는 모바일 앱 UI 구현</li>
                         </ul>
                     </div>
                     <div class="bg-slate-50 p-3 rounded text-slate-800 text-sm border-l-4 border-slate-400">
                         <strong>성과:</strong> 식당 평균 대기 시간 <strong>27% 단축</strong> 및 교내 논문 제출
                     </div>
                 </div>
+
+                <!-- 경험 2: 원터치 발주 시스템 -->
+                <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm hover:shadow-xl hover:ring-1 hover:ring-slate-300 transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                        <h3 class="text-xl font-bold text-slate-800">[개인] 업무 효율 83% 개선 — '원터치 발주 시스템' 개발</h3>
+                        <span class="text-sm text-slate-500 font-medium mt-1 md:mt-0">2024.10 ~ 2024.11</span>
+                    </div>
+                    <div class="text-slate-600 mb-4">
+                        <span class="block mb-1"><strong>소속:</strong> 어사출또 횟집 (아르바이트)</span>
+                        <span class="block mb-1"><strong>역할:</strong> 시스템 기획, 개발 및 도입 총괄</span>
+                        <span class="block"><strong>개요:</strong> 비효율적인 수기 발주 시스템으로 인한 잦은 누락과 업무 시간 소요 문제를 해결하기 위해 개발</span>
+                    </div>
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-slate-700 mb-2">주요 수행 내용:</h4>
+                        <ul class="list-disc list-inside text-slate-600 space-y-1 pl-2">
+                            <li>기존 수기 발주 방식의 문제점 분석 및 관리자/동료 인터뷰를 통한 요구사항 도출</li>
+                            <li>Google Forms와 Spreadsheet를 연동하여 발주 내역이 자동 집계되는 시스템 기획 및 개발</li>
+                            <li>관리자 설득 및 동료 교육을 주도하여 시스템의 성공적인 현장 정착 유도</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded text-slate-800 text-sm border-l-4 border-slate-400">
+                        <strong>성과:</strong> 관리자 마감 업무 시간을 기존 1시간에서 10분으로 <strong>83% 단축</strong>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -339,10 +339,30 @@
         <section id="projects" class="py-20 md:py-32 px-6 md:px-0 scroll-mt-24">
             <h2 class="text-2xl font-bold text-slate-900 section-title">Projects</h2>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <!-- 프로젝트 1 -->
+                <!-- 프로젝트 1: MediFit (팀 프로젝트) -->
+                <!-- [★수정] 링크 연결 (Fork된 주소로 변경 필요 시 수정하세요) -->
+                <a href="https://github.com/asdzxc000115/medifit_project" target="_blank" class="group block bg-white border border-slate-200 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <div class="h-48 overflow-hidden bg-slate-100">
+                        <img src="https://via.placeholder.com/600x400/cbd5e1/64748b?text=MediFit+Project" alt="MediFit Project" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors">MediFit (팀 프로젝트)</h3>
+                            <svg class="w-5 h-5 text-slate-400 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        </div>
+                        <p class="text-slate-600 text-sm mb-4 line-clamp-2">NextCare와 협업한 헬스케어 솔루션 프로젝트입니다.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium">Java</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium">Spring Boot</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium">MySQL</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 프로젝트 2: 교내 혼잡도 개선 앱 -->
                 <a href="https://github.com/asdzxc000115" target="_blank" class="group block bg-white border border-slate-200 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                     <div class="h-48 overflow-hidden bg-slate-100">
-                        <img src="https://via.placeholder.com/600x400/cbd5e1/64748b?text=Congestion+App" alt="Project 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <img src="https://via.placeholder.com/600x400/cbd5e1/64748b?text=Congestion+App" alt="Congestion App" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
@@ -357,39 +377,40 @@
                         </div>
                     </div>
                 </a>
-                <!-- 프로젝트 2 -->
+
+                <!-- 프로젝트 3: 원터치 발주 시스템 -->
                 <a href="https://github.com/asdzxc000115" target="_blank" class="group block bg-white border border-slate-200 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                     <div class="h-48 overflow-hidden bg-slate-100">
-                        <img src="https://via.placeholder.com/600x400/cbd5e1/64748b?text=Blog+Platform" alt="Project 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <img src="https://via.placeholder.com/600x400/cbd5e1/64748b?text=Order+System" alt="Order System" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors">개인 블로그 플랫폼</h3>
+                            <h3 class="text-xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors">원터치 발주 시스템</h3>
                             <svg class="w-5 h-5 text-slate-400 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                         </div>
-                        <p class="text-slate-600 text-sm mb-4 line-clamp-2">Django 프레임워크로 구축한 마크다운 지원 기술 블로그입니다. 검색 및 태그 기능을 지원합니다.</p>
+                        <p class="text-slate-600 text-sm mb-4 line-clamp-2">아르바이트 업무 효율을 위해 개발한 자동화 발주 시스템입니다.</p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium">Python</span>
-                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium">Django</span>
-                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium">JS</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium">Google Apps Script</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium">Spreadsheet</span>
                         </div>
                     </div>
                 </a>
-                <!-- 프로젝트 3 -->
+
+                <!-- 프로젝트 4: 포트폴리오 웹사이트 -->
                 <a href="https://github.com/asdzxc000115" target="_blank" class="group block bg-white border border-slate-200 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                     <div class="h-48 overflow-hidden bg-slate-100">
-                        <img src="https://via.placeholder.com/600x400/cbd5e1/64748b?text=Chat+App" alt="Project 3" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <img src="https://via.placeholder.com/600x400/cbd5e1/64748b?text=Portfolio" alt="Portfolio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors">실시간 채팅 앱</h3>
+                            <h3 class="text-xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors">포트폴리오 웹사이트</h3>
                             <svg class="w-5 h-5 text-slate-400 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                         </div>
-                        <p class="text-slate-600 text-sm mb-4 line-clamp-2">Node.js와 Socket.IO를 이용한 실시간 웹 채팅 애플리케이션입니다.</p>
+                        <p class="text-slate-600 text-sm mb-4 line-clamp-2">Vercel을 통해 배포된 반응형 개인 포트폴리오 웹사이트입니다.</p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium">Node.js</span>
-                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium">Socket.IO</span>
-                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium">React</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium">HTML/CSS</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium">TailwindCSS</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium">JS</span>
                         </div>
                     </div>
                 </a>
@@ -397,7 +418,7 @@
         </section>
 
 
-        <!-- 4. Skills & Tools [★수정] 색상 다양화 -->
+        <!-- 4. Skills & Tools -->
         <section id="skills" class="py-20 md:py-32 px-6 md:px-0 scroll-mt-24">
             <h2 class="text-2xl font-bold text-slate-900 section-title">Skills & Tools</h2>
             <div class="space-y-12">
@@ -407,12 +428,11 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6">
                         <div>
                             <div class="flex justify-between mb-1"><span class="text-base font-medium text-slate-700">Java</span><span class="text-sm text-slate-500">80%</span></div>
-                            <!-- [★수정] 각 기술별 고유 색상 적용 -->
-                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="skill-bar-fill bg-red-500 h-2.5 rounded-full" style="width: 80%"></div></div>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="skill-bar-fill bg-rose-500 h-2.5 rounded-full" style="width: 80%"></div></div>
                         </div>
                         <div>
                             <div class="flex justify-between mb-1"><span class="text-base font-medium text-slate-700">Python</span><span class="text-sm text-slate-500">75%</span></div>
-                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="skill-bar-fill bg-blue-500 h-2.5 rounded-full" style="width: 75%"></div></div>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="skill-bar-fill bg-sky-600 h-2.5 rounded-full" style="width: 75%"></div></div>
                         </div>
                         <div>
                             <div class="flex justify-between mb-1"><span class="text-base font-medium text-slate-700">HTML/CSS</span><span class="text-sm text-slate-500">90%</span></div>
@@ -420,11 +440,11 @@
                         </div>
                         <div>
                             <div class="flex justify-between mb-1"><span class="text-base font-medium text-slate-700">Spring Boot</span><span class="text-sm text-slate-500">60%</span></div>
-                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="skill-bar-fill bg-green-600 h-2.5 rounded-full" style="width: 60%"></div></div>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="skill-bar-fill bg-emerald-500 h-2.5 rounded-full" style="width: 60%"></div></div>
                         </div>
                         <div>
                             <div class="flex justify-between mb-1"><span class="text-base font-medium text-slate-700">JavaScript</span><span class="text-sm text-slate-500">70%</span></div>
-                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="skill-bar-fill bg-yellow-400 h-2.5 rounded-full" style="width: 70%"></div></div>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="skill-bar-fill bg-amber-400 h-2.5 rounded-full" style="width: 70%"></div></div>
                         </div>
                     </div>
                 </div>
@@ -434,15 +454,15 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6">
                         <div>
                             <div class="flex justify-between mb-1"><span class="text-base font-medium text-slate-700">Git & GitHub</span><span class="text-sm text-slate-500">80%</span></div>
-                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="skill-bar-fill bg-orange-600 h-2.5 rounded-full" style="width: 80%"></div></div>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="skill-bar-fill bg-orange-700 h-2.5 rounded-full" style="width: 80%"></div></div>
                         </div>
                         <div>
                             <div class="flex justify-between mb-1"><span class="text-base font-medium text-slate-700">MySQL</span><span class="text-sm text-slate-500">70%</span></div>
-                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="skill-bar-fill bg-blue-600 h-2.5 rounded-full" style="width: 70%"></div></div>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="skill-bar-fill bg-indigo-500 h-2.5 rounded-full" style="width: 70%"></div></div>
                         </div>
                         <div>
                             <div class="flex justify-between mb-1"><span class="text-base font-medium text-slate-700">IntelliJ IDEA</span><span class="text-sm text-slate-500">85%</span></div>
-                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="skill-bar-fill bg-purple-600 h-2.5 rounded-full" style="width: 85%"></div></div>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="skill-bar-fill bg-violet-600 h-2.5 rounded-full" style="width: 85%"></div></div>
                         </div>
                         <div>
                             <div class="flex justify-between mb-1"><span class="text-base font-medium text-slate-700">Figma</span><span class="text-sm text-slate-500">75%</span></div>
@@ -459,13 +479,13 @@
             <h2 class="text-2xl font-bold text-slate-900 section-title">Education</h2>
             <div class="space-y-8 border-l-2 border-slate-200 ml-3 pl-8 relative">
                 <div class="relative">
-                    <span class="absolute -left-[39px] top-1.5 w-5 h-5 rounded-full border-4 border-white bg-slate-400"></span>
-                    <span class="text-sm text-slate-400 font-mono mb-1 block">2021.03 - 2026.02 (졸업예정)</span>
+                    <span class="absolute -left-[39px] top-1.5 w-5 h-5 rounded-full border-4 border-slate-400 bg-white"></span>
+                    <span class="text-sm text-slate-500 font-mono mb-1 block">2021.03 - 2026.02 (졸업예정)</span>
                     <h3 class="text-lg font-bold text-slate-800">인하공업전문대학</h3>
                     <p class="text-slate-600">컴퓨터정보공학과</p>
                 </div>
                 <div class="relative">
-                    <span class="absolute -left-[39px] top-1.5 w-5 h-5 rounded-full border-4 border-white bg-slate-400"></span>
+                    <span class="absolute -left-[39px] top-1.5 w-5 h-5 rounded-full border-4 border-slate-400 bg-white"></span>
                     <span class="text-sm text-slate-400 font-mono mb-1 block">2025.07 - 2025.09</span>
                     <h3 class="text-lg font-bold text-slate-800">교내 해커톤</h3>
                     <p class="text-slate-600">Project Leader 참가 및 수상</p>
