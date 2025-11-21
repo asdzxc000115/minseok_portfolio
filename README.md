@@ -68,8 +68,8 @@ minseok-portfolio
 ├── images/                # 이미지 리소스 폴더
 │   ├── me.jpg             # 프로필 사진
 │   └── ...                # 프로젝트 썸네일 이미지들
-├── minseok_portfolio.pdf  # 이력서 파일
-├── minseok_resume.pdf     # 포트폴리오 파일
+├── minseok_portfolio.pdf  # 포트폴리오 파일
+├── minseok_resume.pdf     # 이력서 파일
 └── README.md              # 프로젝트 설명 문서
 ```
 ---
