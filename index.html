@@ -215,9 +215,9 @@
                 <span class="tooltip-text">Resume</span>
             </div>
 
-            <!-- PDF Download -->
+            <!-- PDF -->
             <div class="tooltip-container">
-                <a href="portfolio.pdf" download class="text-slate-400 hover:text-slate-900 transition-colors">
+                <a href="minseok_portfolio.pdf" target="_blank" class="text-slate-400 hover:text-slate-900 transition-colors">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                 </a>
                 <span class="tooltip-text">PDF</span>
@@ -287,48 +287,47 @@
                 <!-- 경험 1: 교내 식당 혼잡도 개선 앱 (순서 변경됨) -->
                 <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm hover:shadow-xl hover:ring-1 hover:ring-slate-300 transition-all duration-300 transform hover:-translate-y-1">
                     <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                        <h3 class="text-xl font-bold text-slate-800">[StartUp] AI 기반 '교내 식당 혼잡도 개선 앱' 개발</h3>
+                        <h3 class="text-xl font-bold text-slate-800">[Personal Project] AI 비전 기반 '식당 혼잡도 실시간 모니터링' 시스템</h3>
                         <span class="text-sm text-slate-500 font-medium mt-1 md:mt-0">2025.03 ~ 2025.06</span>
                     </div>
                     <div class="text-slate-600 mb-4">
-                        <span class="block mb-1"><strong>역할:</strong> 시스템 설계, AI 분석, 앱 개발 총괄</span>
-                        <span class="block"><strong>개요:</strong> 식당 혼잡 문제 해결 및 대기 시간 단축</span>
+                        <span class="block mb-1"><strong>역할:</strong> 1인 개발 (AI 모델링, 백엔드 서버, 앱 클라이언트)</span>
+                        <span class="block"><strong>개요:</strong> 교내 식당의 고질적인 대기 줄 문제를 해결하기 위한 실시간 혼잡도 분석 및 알림 서비스 구축</span>
                     </div>
                     <div class="mb-4">
                         <h4 class="font-semibold text-slate-700 mb-2">주요 수행 내용:</h4>
                         <ul class="list-disc list-inside text-slate-600 space-y-1 pl-2">
-                            <li>(분석/설계) 30명 대상 설문조사를 통해 사용자 요구사항 정의 및 시스템 구조 설계</li>
-                            <li>(AI 분석) Python YOLOv7 모델로 식당 내 인원수를 실시간으로 측정하는 데이터 수집 시스템 구축</li>
-                            <li>(문제 해결) 객체 중첩으로 인한 정확도 저하 문제를 해결하기 위해 카메라 위치와 각도를 직접 테스트하며 최적화</li>
-                            <li>(개발) Flutter를 활용하여 혼잡도 데이터를 직관적으로 보여주는 모바일 앱 UI 구현</li>
+                            <li><strong>사용자 분석:</strong> 교내 학생 30명 대상 설문조사를 수행하여 '대기 시간 예측' 기능을 핵심 요구사항으로 도출</li>
+                            <li><strong>AI 파이프라인 구축:</strong> Python 및 YOLOv7 객체 탐지 모델을 활용하여 CCTV 영상 내 인원 수를 실시간으로 카운팅하는 서버 개발</li>
+                            <li><strong>기술적 문제 해결:</strong> 밀집된 인파로 인한 객체 중첩(Occlusion) 문제를 해결하기 위해 카메라 앵글 최적화 및 NMS 임계값 튜닝 수행</li>
+                            <li><strong>클라이언트 개발:</strong> Flutter를 사용하여 혼잡도(여유/보통/혼잡)를 직관적인 색상으로 시각화한 크로스 플랫폼 앱 구현</li>
                         </ul>
                     </div>
                     <div class="bg-slate-50 p-3 rounded text-slate-800 text-sm border-l-4 border-slate-400">
-                        <strong>성과:</strong> 식당 평균 대기 시간 <strong>27% 단축</strong> 및 교내 논문 제출
+                        <strong>성과:</strong> 인원 측정 정확도 <strong>95% 달성</strong> 및 교내 학술 논문 등재
                     </div>
                 </div>
 
                 <!-- 경험 2: 원터치 발주 시스템 -->
                 <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm hover:shadow-xl hover:ring-1 hover:ring-slate-300 transition-all duration-300 transform hover:-translate-y-1">
                     <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                        <h3 class="text-xl font-bold text-slate-800">[개인] 업무 효율 83% 개선 — '원터치 발주 시스템' 개발</h3>
-                        <span class="text-sm text-slate-500 font-medium mt-1 md:mt-0">2024.10 ~ 2024.11</span>
-                    </div>
+                        <h3 class="text-xl font-bold text-slate-800">[Side Project] 매장 업무 효율화 — '원터치 발주 웹 앱' 개발</h3>
+                        <span class="text-sm text-slate-500 font-medium mt-1 md:mt-0">2024.10 ~ 2024.11</span> </div>
                     <div class="text-slate-600 mb-4">
-                        <span class="block mb-1"><strong>소속:</strong> 어사출또 횟집 (아르바이트)</span>
-                        <span class="block mb-1"><strong>역할:</strong> 시스템 기획, 개발 및 도입 총괄</span>
-                        <span class="block"><strong>개요:</strong> 비효율적인 수기 발주 시스템으로 인한 잦은 누락과 업무 시간 소요 문제를 해결하기 위해 개발</span>
+                        <span class="block mb-1"><strong>소속:</strong> 어사출또 (아르바이트 근무 중 개선 제안)</span>
+                        <span class="block mb-1"><strong>역할:</strong> 1인 개발 (기획, UI/UX 디자인, 프론트엔드 구현)</span>
+                        <span class="block"><strong>개요:</strong> 카카오톡 수기 입력 방식의 번거로움과 오타 발생 문제를 해결하기 위해, 별도 서버가 필요 없는 모바일 웹 발주 애플리케이션 개발</span>
                     </div>
                     <div class="mb-4">
                         <h4 class="font-semibold text-slate-700 mb-2">주요 수행 내용:</h4>
                         <ul class="list-disc list-inside text-slate-600 space-y-1 pl-2">
-                            <li>기존 수기 발주 방식의 문제점 분석 및 관리자/동료 인터뷰를 통한 요구사항 도출</li>
-                            <li>Google Forms와 Spreadsheet를 연동하여 발주 내역이 자동 집계되는 시스템 기획 및 개발</li>
-                            <li>관리자 설득 및 동료 교육을 주도하여 시스템의 성공적인 현장 정착 유도</li>
+                            <li><strong>Vanilla JS & Tailwind CSS:</strong> 외부 라이브러리 의존성 없이 HTML 파일 하나로 동작하는 경량화된 웹 앱 구축</li>
+                            <li><strong>UX 개선:</strong> 모바일 터치 인터페이스를 도입하여 카테고리별 재고 및 주문 수량 입력을 직관적으로 개선</li>
+                            <li><strong>자동화 기능:</strong> 입력 데이터 기반 발주서 텍스트 자동 생성 및 Clipboard/Web Share API 연동</li>
                         </ul>
                     </div>
                     <div class="bg-slate-50 p-3 rounded text-slate-800 text-sm border-l-4 border-slate-400">
-                        <strong>성과:</strong> 관리자 마감 업무 시간을 기존 1시간에서 10분으로 <strong>83% 단축</strong>
+                        <strong>성과:</strong> 발주 업무 소요 시간 <strong>80% 이상 단축</strong> 및 주문 실수(오타) <strong>0건</strong> 달성
                     </div>
                 </div>
 
@@ -338,20 +337,19 @@
         <!-- 3. Projects -->
         <section id="projects" class="py-20 md:py-32 px-6 md:px-0 scroll-mt-24">
             <h2 class="text-2xl font-bold text-slate-900 section-title">Projects</h2>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="space-y-8">
+
                 <!-- 프로젝트 1: MediFit (팀 프로젝트) -->
-                <!-- [★수정] 링크 연결 (Fork된 주소로 변경 필요 시 수정하세요) -->
-                <a href="https://github.com/asdzxc000115/medifit_project" target="_blank" class="group block bg-white border border-slate-200 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                    <div class="h-48 overflow-hidden bg-slate-100 relative">
-                        <img src="/images/medifit.png" alt="MediFit" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <a href="https://github.com/asdzxc000115/medifit_project" target="_blank" class="group block bg-white border border-slate-200 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 md:flex">
+                    <div class="md:w-1/3">
+                        <img src="/images/medifit.png" alt="MediFit" class="w-full h-full object-contain">
                     </div>
-                    <div class="p-6">
+                    <div class="p-6 md:w-2/3">
                         <div class="flex justify-between items-start mb-2">
                             <h3 class="text-xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors">MediFit (팀 프로젝트)</h3>
                             <svg class="w-5 h-5 text-slate-400 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                         </div>
-                        <!-- [★수정] PDF 내용을 바탕으로 설명 업데이트 -->
-                        <p class="text-slate-600 text-sm mb-4 line-clamp-2">
+                        <p class="text-slate-600 text-sm mb-4">
                             시니어 계층을 위한 AI 헬스케어 도우미입니다. AI 챗봇을 활용한 건강 상담과 직관적인 병원 예약 및 복약 관리 기능을 제공하여 디지털 소외 계층의 건강 관리를 돕습니다.
                         </p>
                         <div class="flex flex-wrap gap-2">
@@ -364,16 +362,16 @@
                 </a>
 
                 <!-- 프로젝트 2: 교내 혼잡도 개선 앱 -->
-                <a href="https://github.com/asdzxc000115" target="_blank" class="group block bg-white border border-slate-200 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                    <div class="h-48 overflow-hidden bg-slate-100">
-                        <img src="https://via.placeholder.com/600x400/cbd5e1/64748b?text=Congestion+App" alt="Congestion App" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
+                <a href="https://github.com/asdzxc000115/cafeteria_monitor_app.git" target="_blank" class="group block bg-white border border-slate-200 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 md:flex">
+                    <div class="md:w-1/3">
+                        <img src="/images/yolo.png" alt="Congestion App" class="w-full h-full object-contain">
                     </div>
-                    <div class="p-6">
+                    <div class="p-6 md:w-2/3">
                         <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors">교내 혼잡도 개선 앱</h3>
+                            <h3 class="text-xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors">교내 식당 혼잡도 개선 앱</h3>
                             <svg class="w-5 h-5 text-slate-400 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                         </div>
-                        <p class="text-slate-600 text-sm mb-4 line-clamp-2">YOLOv7과 Flutter를 활용하여 실시간 식당 혼잡도를 분석하고 제공하는 모바일 애플리케이션입니다.</p>
+                        <p class="text-slate-600 text-sm mb-4">YOLOv7과 Flutter를 활용하여 실시간 식당 혼잡도를 분석하고 제공하는 모바일 애플리케이션입니다.</p>
                         <div class="flex flex-wrap gap-2">
                             <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium">Dart</span>
                             <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium">Python</span>
@@ -383,34 +381,36 @@
                 </a>
 
                 <!-- 프로젝트 3: 원터치 발주 시스템 -->
-                <a href="https://github.com/asdzxc000115" target="_blank" class="group block bg-white border border-slate-200 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                    <div class="h-48 overflow-hidden bg-slate-100">
-                        <img src="https://via.placeholder.com/600x400/cbd5e1/64748b?text=Order+System" alt="Order System" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
+                <a href="https://github.com/asdzxc000115/One-Touch-Order.git" target="_blank" class="group block bg-white border border-slate-200 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 md:flex">
+                    <div class="md:w-1/3">
+                        <img src="/images/order_system.png" alt="Order System" class="w-full h-full object-contain">
                     </div>
-                    <div class="p-6">
+                    <div class="p-6 md:w-2/3">
                         <div class="flex justify-between items-start mb-2">
                             <h3 class="text-xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors">원터치 발주 시스템</h3>
                             <svg class="w-5 h-5 text-slate-400 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                         </div>
-                        <p class="text-slate-600 text-sm mb-4 line-clamp-2">아르바이트 업무 효율을 위해 개발한 자동화 발주 시스템입니다.</p>
+                        <p class="text-slate-600 text-sm mb-4">
+                            수기 장부의 비효율을 개선하기 위해 개발한 모바일 웹 앱입니다. 터치 인터페이스로 재고/주문을 관리하고 발주서를 자동 생성합니다.</p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium">Google Apps Script</span>
-                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium">Spreadsheet</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium border border-slate-200">JavaScript</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium border border-slate-200">HTML/CSS</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium border border-slate-200">TailwindCSS</span>
                         </div>
                     </div>
                 </a>
 
                 <!-- 프로젝트 4: 포트폴리오 웹사이트 -->
-                <a href="https://github.com/asdzxc000115/minseok_portfolio.git" target="_blank" class="group block bg-white border border-slate-200 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                    <div class="h-48 overflow-hidden bg-slate-100">
-                        <img src="/images/portfolio.png" alt="Portfolio" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
+                <a href="https://github.com/asdzxc000115/minseok_portfolio.git" target="_blank" class="group block bg-white border border-slate-200 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 md:flex">
+                    <div class="md:w-1/3">
+                        <img src="/images/portfolio.png" alt="Portfolio" class="w-full h-full object-contain">
                     </div>
-                    <div class="p-6">
+                    <div class="p-6 md:w-2/3">
                         <div class="flex justify-between items-start mb-2">
                             <h3 class="text-xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors">포트폴리오 웹사이트</h3>
                             <svg class="w-5 h-5 text-slate-400 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                         </div>
-                        <p class="text-slate-600 text-sm mb-4 line-clamp-2">Vercel을 통해 배포된 반응형 개인 포트폴리오 웹사이트입니다.</p>
+                        <p class="text-slate-600 text-sm mb-4">Vercel을 통해 배포된 반응형 개인 포트폴리오 웹사이트입니다.</p>
                         <div class="flex flex-wrap gap-2">
                             <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium">HTML/CSS</span>
                             <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium">TailwindCSS</span>
