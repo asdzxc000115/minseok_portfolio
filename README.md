@@ -7,7 +7,7 @@
 
 <br>
 
-[👉 Live Demo 보러가기 (Click)](https://minseok-portfolio-minseoks-projects-2d36bebd.vercel.app)
+[👉 Live Demo 보러가기 (Click)](https://minseok-portfolio-ochre.vercel.app/)
 
 <br><br>
 
