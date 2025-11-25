@@ -1,13 +1,13 @@
 <div align="center">
 
 # 🎨 Minseok Choi - Portfolio Website
-### 사용자 경험을 최우선으로 생각하는 주니어 백엔드 개발자의 포트폴리오
+### 사용자 경험을 최우선으로 생각하는 주니어 프론트엔드 개발자의 포트폴리오
 
 > **"정적인 정보 나열을 넘어, 인터랙티브한 경험을 제공하는 웹사이트"**
 
 <br>
 
-[👉 Live Demo 보러가기 (Click)](https://minseok-portfolio-ochre.vercel.app)
+[👉 Live Demo 보러가기 (Click)](https://minseok-portfolio-ochre.vercel.app/)
 
 <br><br>
 
@@ -64,12 +64,13 @@
 
 ```bash
 minseok-portfolio
-├── index.html          # 메인 페이지 (전체 구조 및 콘텐츠)
-├── images/             # 이미지 리소스 폴더
-│   ├── me.jpg          # 프로필 사진
-│   └── ...             # 프로젝트 썸네일 이미지들
-├── resume.pdf          # 다운로드용 이력서 파일
-└── README.md           # 프로젝트 설명 문서
+├── index.html             # 메인 페이지 (전체 구조 및 콘텐츠)
+├── images/                # 이미지 리소스 폴더
+│   ├── me.jpg             # 프로필 사진
+│   └── ...                # 프로젝트 썸네일 이미지들
+├── minseok_portfolio.pdf  # 포트폴리오 파일
+├── minseok_resume.pdf     # 이력서 파일
+└── README.md              # 프로젝트 설명 문서
 ```
 ---
 
